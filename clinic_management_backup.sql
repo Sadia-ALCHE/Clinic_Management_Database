@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS clinic_management_db;
+USE clinic_management_db;
+
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: clinic_management_db
@@ -173,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-30  1:16:24
+-- Dump completed on 2026-05-31 19:06:25
