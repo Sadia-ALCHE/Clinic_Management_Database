@@ -1,6 +1,5 @@
-CREATE DATABASE IF NOT EXISTS clinic_management_db;
-USE clinic_management_db;
-
+CREATE DATABASE  IF NOT EXISTS `clinic_management_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `clinic_management_db`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: clinic_management_db
@@ -43,7 +42,7 @@ CREATE TABLE `appointment` (
   CONSTRAINT `fk_appt_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_appt_patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `chk_duration` CHECK ((`duration` > 0)),
-  CONSTRAINT `chk_status` CHECK ((`status` in (_utf8mb4'Booked',_utf8mb4'Cancelled')))
+  CONSTRAINT `chk_status` CHECK ((`status` in (_utf8mb3'Booked',_utf8mb3'Cancelled')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,7 +122,7 @@ CREATE TABLE `doctoravailability` (
   `available_day` varchar(10) NOT NULL,
   PRIMARY KEY (`doctor_id`,`available_day`),
   CONSTRAINT `fk_da_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `doctor` (`doctor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `chk_available_day` CHECK ((`available_day` in (_utf8mb4'Mon',_utf8mb4'Tue',_utf8mb4'Wed',_utf8mb4'Thu',_utf8mb4'Fri',_utf8mb4'Sat',_utf8mb4'Sun')))
+  CONSTRAINT `chk_available_day` CHECK ((`available_day` in (_utf8mb3'Mon',_utf8mb3'Tue',_utf8mb3'Wed',_utf8mb3'Thu',_utf8mb3'Fri',_utf8mb3'Sat',_utf8mb3'Sun')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,12 +147,12 @@ CREATE TABLE `patient` (
   `patient_id` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
   `age` int NOT NULL,
-  `gender` varchar(10) NOT NULL,
   `contact` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
   PRIMARY KEY (`patient_id`),
   UNIQUE KEY `contact` (`contact`),
-  CONSTRAINT `patient_chk_1` CHECK (((`age` >= 1) and (`age` <= 120))),
-  CONSTRAINT `patient_chk_2` CHECK ((`gender` in (_utf8mb4'Male',_utf8mb4'Female',_utf8mb4'Other')))
+  CONSTRAINT `chk_patient_age` CHECK (((`age` >= 1) and (`age` <= 120))),
+  CONSTRAINT `chk_patient_gender` CHECK ((`gender` in (_utf8mb3'Male',_utf8mb3'Female',_utf8mb3'Other')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -163,7 +162,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES ('P001','Kingston Adeniyi',21,'Male','55186584'),('P002','Mariam Ali',1,'Female','24461547'),('P003','Abdul Karim',120,'Male','55174262'),('P004','Junior Pope',54,'Male','21456879'),('P005','Acher Minster',24,'Male','54455429');
+INSERT INTO `patient` VALUES ('P001','Kingston Adeniyi',21,'55186584','Male'),('P002','Mariam Ali',1,'24461547','Female'),('P003','Abdul Karim',120,'55174262','Male'),('P004','Junior Pope',54,'21456879','Male'),('P005','Acher Minster',24,'54455429','Male');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -176,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-31 19:06:25
+-- Dump completed on 2026-05-31 20:18:03
