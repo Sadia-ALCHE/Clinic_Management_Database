@@ -2,6 +2,9 @@
 -- Group B(Clinic Appointment & Patient Management System)
 -- Task II.2 – DML: Data Insertion 
 
+CREATE DATABASE IF NOT EXISTS clinic_management_db;
+USE clinic_management_db;
+
 -- INSERT: Patient -------
 
 INSERT INTO Patient (patient_id, name, age, contact, gender) VALUES
