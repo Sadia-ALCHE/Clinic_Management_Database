@@ -2,6 +2,7 @@
 -- Group B(Clinic Appointment & Patient Management System)
 -- Task II.1 – DDL: Schema, Relations, and Constraints
 
+CREATE DATABASE IF NOT EXISTS clinic_management_db;
 USE clinic_management_db;
 
 -- TABLE 1: Patients --------
